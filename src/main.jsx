@@ -6,7 +6,7 @@ import App from './App.jsx'
 import About from './components/About.jsx'
 import Contact from './components/Contact.jsx'
 import Education from './components/education/Education.jsx'
-import Experience from './components/Experience.jsx'
+import Experience from './components/experience/Experience.jsx'
 import Skills from './components/Skills.jsx'
 
 const router = createBrowserRouter([{

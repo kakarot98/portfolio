@@ -1,7 +1,7 @@
 import React from 'react'
 import Contact from '../Contact';
 import Education from '../education/Education';
-import Experience from '../Experience';
+import Experience from '../experience/Experience';
 import Skills from '../Skills';
 import { Link } from 'react-router-dom';
 import About from '../About';
