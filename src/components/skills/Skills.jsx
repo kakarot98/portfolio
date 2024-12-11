@@ -5,12 +5,12 @@ import React from 'react';
 const Skills = () => {
   return (
     <section className="py-8 px-4 bg-cream w-full">
-      {/* Section Header */}
+     
       <h2 className="text-2xl font-bold mb-6 text-center flex justify-center items-center">
         🛠 Tech Stack
       </h2>
 
-      {/* Skills Categories */}
+     
       <div className="max-w-6xl mx-auto space-y-8">
         {/* Languages & Frameworks */}
         <div>
@@ -22,7 +22,7 @@ const Skills = () => {
           />
         </div>
 
-        {/* Databases */}
+     
         <div>
           <h3 className="text-xl font-semibold mb-4">Databases</h3>
           <img
@@ -32,7 +32,7 @@ const Skills = () => {
           />
         </div>
 
-        {/* Tools & Technologies */}
+       
         <div>
           <h3 className="text-xl font-semibold mb-4">Tools & Technologies</h3>
           <img
