@@ -1,10 +1,8 @@
 import React from 'react'
-import Contact from '../Contact';
 import Education from '../education/Education';
 import Experience from '../experience/Experience';
 import Skills from '../skills/Skills';
 import { Link } from 'react-router-dom';
-import About from '../About';
 import Project from '../projects/Project';
 
 const Navbar = () => {
@@ -14,9 +12,7 @@ const Navbar = () => {
       <div className='p-4 flex flex-row justify-evenly gap-4 font-medium' >
         <ul><Link to={'/education'} className="hover:text-blue-500">Education</Link></ul>
         <ul><Link to={'/experience'} className="hover:text-blue-500">Experience</Link></ul>
-        <ul><Link to={'/contact'} className="hover:text-blue-500">Contact</Link></ul>
-        <ul><Link to={`/project`} className="hover:text-blue-500">Projects</Link></ul>        
-        
+        <ul><Link to={`/project`} className="hover:text-blue-500">Projects</Link></ul>
         <ul><Link to={'/skills'} className="hover:text-blue-500">Skills</Link></ul>
       </div>
     </div>

@@ -16,6 +16,7 @@ const App = () => {
             <img src={profile} alt="Profile" className="w-52 h-auto p-1 rounded-full shadow-md" />
           </div>
           <div className="font-semibold text-2xl">Hrushikesh Mohanty</div>
+          <div>!!! This website is still under construction !!!</div>
         </div>
 
         {/* Dynamic Content: Outlet for Routing */}
