@@ -19,11 +19,11 @@ const Project = () => {
         const headers = {};
 
         // Access the GitHub token from environment variables
-        const githubToken = import.meta.env.VITE_GITHUB_TOKEN;
+        // const githubToken = import.meta.env.VITE_GITHUB_TOKEN;
 
-        if (githubToken) {
-          headers.Authorization = `token ${githubToken}`;
-        }
+        // if (githubToken) {
+        //   headers.Authorization = `token ${githubToken}`;
+        // }
 
         const response = await fetch(
           `https://api.github.com/users/${githubUsername}/repos?per_page=100`,
