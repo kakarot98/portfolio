@@ -39,6 +39,6 @@ const router = createBrowserRouter([{
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <RouterProvider router={router} basename="/portfolio/"/>
+    <RouterProvider router={router}/>
   </StrictMode>,
 )
