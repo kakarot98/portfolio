@@ -41,18 +41,22 @@ To illustrate the layout and responsiveness, screenshots are stored in the `scre
 
 1. **Clone the Repository:**
    
-   git clone https://github.com/kakarot98/portfolio.git
+   ```git clone https://github.com/kakarot98/portfolio.git```
 
 2. **Navigate into the Project Directory:**
 
-    cd portfolio
+    ```cd portfolio```
 
 3. **Install Dependencies:**
     
-    npm install
-    yarn install
+    ```npm install```
+
+    or
+
+    ```yarn install```
 
 4. **Start the development server:**
 
-    npm run dev
-    yarn dev
+    ```npm run dev```
+    or
+    ```yarn dev```
