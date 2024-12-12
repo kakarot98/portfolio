@@ -10,27 +10,27 @@ import Skills from './components/skills/Skills.jsx'
 import Project from './components/projects/Project.jsx'
 
 const router = createBrowserRouter([{
-  path: '/',
+  path: '/portfolio',
   element: <App />,
   children: [
     {
-      path: '/',
+      path: '',
       element: <About/>,
     },
     {
-      path: '/education',
+      path: 'education',
       element: <Education />,
     },
     {
-      path: '/experience',
+      path: 'experience',
       element: <Experience />,
     },
     {
-      path: '/skills',
+      path: 'skills',
       element: <Skills />,
     },
     {
-      path: '/project',
+      path: 'project',
       element: <Project />,
     }
   ]
