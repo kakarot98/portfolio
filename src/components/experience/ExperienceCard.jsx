@@ -5,9 +5,9 @@ function ExperienceCard({ experience, onClick }) {
   
   return (
     <div
-      className="bg-white shadow-md rounded-lg p-6 mb-4 cursor-pointer hover:bg-#edf5eb transition-colors duration-200"
+      className="bg-white shadow-md rounded-lg p-6 mb-4 cursor-pointer hover:bg-#edf5eb transition-colors duration-200 "
       onClick={onClick}
-      style={{ backgroundColor: '#edf5eb' }}
+      style={{ backgroundColor: '#f5f5f5' }}
     >
       <h3 className="text-xl font-semibold mb-1">{title}</h3>
       <p className="text-md font-medium text-gray-700">{company}</p>
