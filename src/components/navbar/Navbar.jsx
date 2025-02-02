@@ -1,6 +1,6 @@
 // src/components/navbar/Navbar.jsx
 import React, { useState, useEffect, useRef } from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const Navbar = () => {
@@ -54,9 +54,9 @@ const Navbar = () => {
       >
         <div className="flex items-center justify-between px-6">
           
-          <div className="flex-1 flex">
+          <Link to="" className="flex-1 flex">
             <h1 className="text-3xl font-bold text-text">Profile</h1>
-          </div>
+          </Link>
 
           <button
             className="md:hidden focus:outline-none"
