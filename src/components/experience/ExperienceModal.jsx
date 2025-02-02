@@ -1,4 +1,5 @@
 import React from 'react';
+import {motion} from 'framer-motion'
 
 const ExperienceModal = ({ isOpen, onClose, experience }) => {
   if (!isOpen || !experience) return null;
@@ -6,8 +7,18 @@ const ExperienceModal = ({ isOpen, onClose, experience }) => {
   const { title, company, position, dates, details } = experience;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-      <div className="bg-white rounded-lg shadow-lg w-11/12 max-w-2xl p-6 relative">
+    <motion.div 
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50" 
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+    >
+      <motion.div 
+        className="bg-white rounded-lg shadow-lg w-11/12 max-w-2xl p-6 relative"
+        initial={{ scale: 0.9, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        exit={{ scale: 0.9, opacity: 0 }}
+      >
         <button
           className="absolute top-4 right-4 text-gray-500 hover:text-gray-700"
           onClick={onClose}
@@ -22,8 +33,8 @@ const ExperienceModal = ({ isOpen, onClose, experience }) => {
             <li key={index}>{item}</li>
           ))}
         </ul>
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 };
 

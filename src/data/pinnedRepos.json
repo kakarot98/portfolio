@@ -1,0 +1,38 @@
+[
+  {
+    "repo": "exercise-tracker",
+    "description": "This is an exercise tracker app, similar  to to-do lists. My first try at MERN stack",
+    "stars": 2,
+    "forks": 0,
+    "link": "https://github.com/kakarot98/exercise-tracker",
+    "language": "JavaScript",
+    "languageColor": "#f1e05a"
+  },
+  {
+    "repo": "portfolio",
+    "description": null,
+    "stars": 0,
+    "forks": 0,
+    "link": "https://github.com/kakarot98/portfolio",
+    "language": "JavaScript",
+    "languageColor": "#f1e05a"
+  },
+  {
+    "repo": "rick-and-morty",
+    "description": null,
+    "stars": 0,
+    "forks": 0,
+    "link": "https://github.com/kakarot98/rick-and-morty",
+    "language": "JavaScript",
+    "languageColor": "#f1e05a"
+  },
+  {
+    "repo": "fetch-dog-search",
+    "description": "This one is just a basic web-app made for Fetch as an initial assignment",
+    "stars": 0,
+    "forks": 0,
+    "link": "https://github.com/kakarot98/fetch-dog-search",
+    "language": "TypeScript",
+    "languageColor": "#3178c6"
+  }
+]
