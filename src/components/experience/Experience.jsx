@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import ExperienceCard from './ExperienceCard';
 import ExperienceModal from './ExperienceModal';
+import { AnimatePresence } from 'framer-motion'
 
 const experienceData = [
   {
@@ -78,7 +79,7 @@ const Experience = () => {
   return (
     <section className="py-8 px-4">
       <h2 className="text-2xl font-bold mb-6 text-center">Professional Experience</h2>
-      <div className="space-y-4 flex flex-col items-center justify-star">
+      <div className="flex flex-wrap gap-4 justify-center">
         {experienceData.map((exp, index) => (
           <ExperienceCard
             key={index}
@@ -88,11 +89,15 @@ const Experience = () => {
         ))}
       </div>
 
-      <ExperienceModal
+<AnimatePresence>
+      {isModalOpen && (
+        <ExperienceModal
         isOpen={isModalOpen}
         onClose={handleCloseModal}
         experience={selectedExperience}
       />
+      )}
+      </AnimatePresence>
     </section>
   );
 }
