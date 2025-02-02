@@ -1,11 +1,11 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 
-const baseCardClass = "bg-white shadow-md rounded-lg p-6 mb-4 cursor-pointer transition-transform duration-300";
+const baseCardClass = "shadow-md rounded-lg p-6 mb-4 cursor-pointer transition-transform duration-300";
 const hoverEffect = "hover:shadow-xl";
-const dimensionClass = "w-72 h-40";
+const dimensionClass = "w-72 h-50";
 
-function ExperienceCard({ experience, onClick }) {
+function ExperienceCard({ experience, onClick, isModalOpen }) {
   const { title, company, position, dates } = experience;
   
   return (
@@ -19,6 +19,15 @@ function ExperienceCard({ experience, onClick }) {
       <p className="text-md font-medium text-text">{company}</p>
       <p className="text-sm text-gray-400">{position}</p>
       <p className="text-sm text-gray-400">{dates}</p>
+      {!isModalOpen && (
+        <motion.p
+          className="text-sm text-accent italic mt-2"
+          animate={{ scale: [1, 1.05, 1] }}
+          transition={{ duration: 1.5, repeat: Infinity }}
+        >
+          Click to view more details
+        </motion.p>
+      )}
     </motion.div>
   )
 }
