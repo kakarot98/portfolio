@@ -15,52 +15,72 @@ const Project = () => {
       setLoading(true);
       setError(false);
 
+      const endpoint = 'https://api.github.com/graphql';
+      const query = `
+      {
+        user(login: "${githubUsername}") {
+          pinnedItems(first: 4, types: REPOSITORY) {
+            nodes {
+              ... on Repository {
+                name
+                description
+                stargazerCount
+                forkCount
+                url
+                primaryLanguage {
+                  name
+                  color
+                }
+              }
+            }
+          }
+        }
+      }
+    `;
+
+
+
       try {
-        const headers = {};
-
-        // Access the GitHub token from environment variables
-        // const githubToken = import.meta.env.VITE_GITHUB_TOKEN;
-
-        // if (githubToken) {
-        //   headers.Authorization = `token ${githubToken}`;
-        // }
-
-        const response = await fetch(
-          `https://api.github.com/users/${githubUsername}/repos?per_page=100`,
-          { headers }
-        );
+        const token = import.meta.env.VITE_GITHUB_TOKEN;
+        const response = await fetch(endpoint, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: token ? `Bearer ${token}` : '',
+          },
+          body: JSON.stringify({ query }),
+        });
 
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
 
-        const repos = await response.json();
+        const { data } = await response.json();
 
-        // Sort repositories by stargazers_count in descending order
-        const sortedRepos = repos.sort(
-          (a, b) => b.stargazers_count - a.stargazers_count
-        );
+        if (!data || !data.user) {
+          throw new Error('No data found for the specified user.');
+        }
 
-        // Take top 4 repositories
-        const topRepos = sortedRepos.slice(0, 4);
+        const pinnedRepos = data.user.pinnedItems.nodes.map(repo => ({
+          repo: repo.name,
+          description: repo.description,
+          stars: repo.stargazerCount,
+          forks: repo.forkCount,
+          link: repo.url,
+          language: repo.primaryLanguage ? repo.primaryLanguage.name : null,
+          languageColor: repo.primaryLanguage ? repo.primaryLanguage.color : null,
+        }));
 
-        // For each repo, fetch languages used
-        const projectsWithLanguages = await Promise.all(
-          topRepos.map(async (repo) => {
-            const languagesResponse = await fetch(repo.languages_url, { headers });
-            const languagesData = await languagesResponse.json();
-            const languages = Object.keys(languagesData);
 
-            return {
-              title: repo.name,
-              description: repo.description,
-              languages: languages.length > 0 ? languages : ['N/A'],
-              repoLink: repo.html_url,
-            };
-          })
-        );
 
-        setProjects(projectsWithLanguages);
+
+
+
+
+        
+        console.log(pinnedRepos)
+
+        setProjects(pinnedRepos);
         setLoading(false);
       } catch (error) {
         console.error('Error fetching GitHub repositories:', error);
@@ -92,17 +112,14 @@ const Project = () => {
     );
   }
 
+
   return (
     <section className="py-8 px-4">
       <h2 className="text-2xl font-bold mb-6 text-center">Projects</h2>
       <div className="max-w-6xl mx-auto grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-2">
         {projects.map((project, index) => (
           <ProjectCard
-            key={index}
-            title={project.title}
-            description={project.description}
-            languages={project.languages}
-            repoLink={project.repoLink}
+            project={project}
           />
         ))}
       </div>
