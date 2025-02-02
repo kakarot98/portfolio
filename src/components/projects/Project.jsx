@@ -7,7 +7,7 @@ const Project = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
-  // Replace 'YOUR_GITHUB_USERNAME' with your actual GitHub username
+  
   const githubUsername = 'kakarot98';
 
   useEffect(() => {
@@ -15,72 +15,17 @@ const Project = () => {
       setLoading(true);
       setError(false);
 
-      const endpoint = 'https://api.github.com/graphql';
-      const query = `
-      {
-        user(login: "${githubUsername}") {
-          pinnedItems(first: 4, types: REPOSITORY) {
-            nodes {
-              ... on Repository {
-                name
-                description
-                stargazerCount
-                forkCount
-                url
-                primaryLanguage {
-                  name
-                  color
-                }
-              }
-            }
-          }
-        }
-      }
-    `;
-
-
-
+     
       try {
-        const token = import.meta.env.VITE_GITHUB_TOKEN;
-        const response = await fetch(endpoint, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: token ? `Bearer ${token}` : '',
-          },
-          body: JSON.stringify({ query }),
-        });
-
+        const response = await fetch('src/data/pinnedRepos.json');
         if (!response.ok) {
-          throw new Error('Network response was not ok');
+          throw new Error('Failed to fetch pinned repos');
         }
-
-        const { data } = await response.json();
-
-        if (!data || !data.user) {
-          throw new Error('No data found for the specified user.');
-        }
-
-        const pinnedRepos = data.user.pinnedItems.nodes.map(repo => ({
-          repo: repo.name,
-          description: repo.description,
-          stars: repo.stargazerCount,
-          forks: repo.forkCount,
-          link: repo.url,
-          language: repo.primaryLanguage ? repo.primaryLanguage.name : null,
-          languageColor: repo.primaryLanguage ? repo.primaryLanguage.color : null,
-        }));
-
-
-
-
-
-
-
+        const data = await response.json();
         
-        console.log(pinnedRepos)
-
-        setProjects(pinnedRepos);
+      
+        
+        setProjects(data);
         setLoading(false);
       } catch (error) {
         console.error('Error fetching GitHub repositories:', error);
