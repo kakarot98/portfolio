@@ -18,7 +18,7 @@ const Project = () => {
       let response
       try {
         if (process.env.NODE_ENV === 'production') {
-          response = await fetch('/data/pinnedRepos.json');
+          const response = await fetch(`${import.meta.env.BASE_URL}data/pinnedRepos.json`);
           console.log('This is the production environment');
         } else {
           response = await fetch('src/data/pinnedRepos.json');
