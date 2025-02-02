@@ -15,9 +15,16 @@ const Project = () => {
       setLoading(true);
       setError(false);
 
-     
+      let response
       try {
-        const response = await fetch('src/data/pinnedRepos.json');
+        if (process.env.NODE_ENV === 'production') {
+          response = await fetch('/data/pinnedRepos.json');
+          console.log('This is the production environment');
+        } else {
+          response = await fetch('src/data/pinnedRepos.json');
+          console.log('This is not the production environment');
+        }
+        
         if (!response.ok) {
           throw new Error('Failed to fetch pinned repos');
         }

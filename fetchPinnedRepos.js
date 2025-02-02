@@ -68,7 +68,7 @@ async function fetchPinnedRepos() {
     }));
 
     // Save the fetched data to a JSON file in the src/data folder
-    fs.writeFileSync('src/data/pinnedRepos.json', JSON.stringify(pinnedRepos, null, 2));
+    fs.writeFileSync('public/data/pinnedRepos.json', JSON.stringify(pinnedRepos, null, 2));
     console.log('Pinned repositories data fetched and saved successfully.');
   } catch (error) {
     console.error('Error fetching pinned repos:', error);
