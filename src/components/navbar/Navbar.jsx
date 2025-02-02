@@ -48,14 +48,14 @@ const Navbar = () => {
   return (
     <div className='mb-10'>
       <motion.header
-        className="fixed top-0 left-0 right-0 bg-slate-200 shadow-md p-2 z-50"
+        className="fixed top-0 left-0 right-0 bg-navBg shadow-md p-2 z-50"
         animate={{ y: showNavbar ? 0 : -80 }}
         transition={{ duration: 0.3 }}
       >
         <div className="flex items-center justify-between px-6">
           
           <div className="flex-1 flex">
-            <h1 className="text-3xl font-bold text-gray-800">Profile</h1>
+            <h1 className="text-3xl font-bold text-text">Profile</h1>
           </div>
 
           <button
@@ -63,7 +63,7 @@ const Navbar = () => {
             onClick={toggleSidebar}
             aria-label="Toggle Navigation Menu"
           >
-            <svg className="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+            <svg className="w-6 h-6 text-text" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
             </svg>
           </button>
@@ -90,7 +90,7 @@ const Navbar = () => {
           >
 
             <motion.nav
-              className="fixed top-0 left-0 z-50 w-2/3 max-w-xs h-full bg-slate-200 p-4 shadow-lg"
+              className="fixed top-0 left-0 z-50 w-2/3 max-w-xs h-full bg-navBg p-4 pt-16 shadow-lg"
               initial={{ x: '-100%' }}
               animate={{ x: '0%' }}
               exit={{ x: '-100%' }}
