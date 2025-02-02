@@ -14,11 +14,12 @@ const Project = () => {
     const fetchProjects = async () => {
       setLoading(true);
       setError(false);
+      console.log(import.meta.env.BASE_URL)
 
       let response
       try {
         if (process.env.NODE_ENV === 'production') {
-          const response = await fetch(`${import.meta.env.BASE_URL}data/pinnedRepos.json`);
+          response = await fetch(`${import.meta.env.BASE_URL}data/pinnedRepos.json`);
           console.log('This is the production environment');
         } else {
           response = await fetch('src/data/pinnedRepos.json');
