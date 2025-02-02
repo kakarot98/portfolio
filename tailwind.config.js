@@ -10,6 +10,9 @@ export default {
       colors: {
         cream: '#edf5eb'
       },
+      fontFamily: {
+        sans: ['Inter', 'sans-serif'],
+      },
     },
   },
   plugins: [],
