@@ -14,21 +14,21 @@ const ExperienceModal = ({ isOpen, onClose, experience }) => {
       exit={{ opacity: 0 }}
     >
       <motion.div 
-        className="bg-white rounded-lg shadow-lg w-11/12 max-w-2xl p-6 relative"
+        className="bg-secondary rounded-lg shadow-lg w-full max-w-2xl max-h-[70vh] text-left overflow-y-auto p-6 relative"
         initial={{ scale: 0.9, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         exit={{ scale: 0.9, opacity: 0 }}
       >
         <button
-          className="absolute top-4 right-4 text-gray-500 hover:text-gray-700"
+          className="absolute top-4 right-4 text-text hover:text-accent"
           onClick={onClose}
         >
           &times;
         </button>
-        <h2 className="text-2xl font-semibold mb-2">{title}</h2>
-        <p className="text-md font-medium text-gray-700">{company}</p>
-        <p className="text-sm text-gray-600 mb-4">{position} | {dates}</p>
-        <ul className="list-disc list-inside text-sm text-gray-700 space-y-2">
+        <h2 className="text-2xl font-semibold mb-2 text-text">{title}</h2>
+        <p className="text-md font-medium text-text">{company}</p>
+        <p className="text-sm text-text mb-4">{position} | {dates}</p>
+        <ul className="list-disc list-inside text-sm text-text space-y-2 leading-snug">
           {details.map((item, index) => (
             <li key={index}>{item}</li>
           ))}

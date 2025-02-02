@@ -85,6 +85,7 @@ const Experience = () => {
             key={index}
             experience={exp}
             onClick={() => handleCardClick(exp)}
+            isModalOpen = {isModalOpen}
           />
         ))}
       </div>

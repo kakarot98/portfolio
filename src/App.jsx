@@ -1,26 +1,30 @@
 import "./App.css"
 import Navbar from "./components/navbar/Navbar"
-import profile from './assets/profile_glasses.jpg'
+import StaticContent from "./components/StaticContent"
 import { Outlet } from "react-router-dom"
+import { motion } from 'framer-motion';
 
 const App = () => {
   return (
     <>
       <Navbar />
-      <div className="main-content flex flex-row">
+      <div className="main-content flex flex-col md:flex-row">
 
         {/* Static Content: Profile Picture and Name */}
 
-        <div className="static-content w-1/3 flex flex-col items-center flex-shrink-0">
-          <img src={profile} alt="Profile" className="mt-10 w-40 h-auto shadow-md" />
-          <div className="font-semibold text-2xl mt-4 m-2">Hrushikesh Mohanty</div>
-          <div className="mt-2 text-center">!!! This website is still under construction !!!</div>
-        </div>
+        <StaticContent />
 
         {/* Dynamic Content: Outlet for Routing */}
 
-        <div className="dynamic-content flex-grow p-6 ">
-          <Outlet />
+        <div className="dynamic-content w-full md:flex-grow p-6 bg-primary">
+        <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.3 }}
+          >
+            <Outlet />
+          </motion.div>
         </div>
       </div>
 
