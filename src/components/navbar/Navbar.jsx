@@ -8,7 +8,7 @@ const Navbar = () => {
   const [showNavbar, setShowNavbar] = useState(true);
   const lastScrollY = useRef(0);
 
- 
+
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
@@ -53,7 +53,7 @@ const Navbar = () => {
         transition={{ duration: 0.3 }}
       >
         <div className="flex items-center justify-between px-6">
-          
+
           <Link to="" className="flex-1 flex">
             <h1 className="text-3xl font-bold text-text">Profile</h1>
           </Link>
@@ -67,13 +67,13 @@ const Navbar = () => {
               <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
             </svg>
           </button>
-      
+
           <nav className="hidden md:flex space-x-4 font-medium">
             <NavLink to="education" className={navLinkClass}>Education</NavLink>
             <NavLink to="experience" className={navLinkClass}>Experience</NavLink>
             <NavLink to="project" className={navLinkClass}>Projects</NavLink>
             <NavLink to="skills" className={navLinkClass}>Skills</NavLink>
-            <NavLink to="contact" className={navLinkClass}>Contact</NavLink>
+
           </nav>
         </div>
       </motion.header>
@@ -121,11 +121,7 @@ const Navbar = () => {
                     Skills
                   </NavLink>
                 </li>
-                <li>
-                  <NavLink to="contact" className={navLinkClass} onClick={handleNavClick}>
-                    Contact
-                  </NavLink>
-                </li>
+
               </ul>
             </motion.nav>
           </motion.div>

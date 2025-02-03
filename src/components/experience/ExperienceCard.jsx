@@ -7,10 +7,10 @@ const dimensionClass = "w-72 h-50";
 
 function ExperienceCard({ experience, onClick, isModalOpen }) {
   const { title, company, position, dates } = experience;
-  
+
   return (
     <motion.div
-    className={`${baseCardClass} ${hoverEffect} ${dimensionClass} flex flex-col bg-secondary justify-between`}
+      className={`${baseCardClass} ${hoverEffect} ${dimensionClass} flex flex-col bg-secondary justify-between`}
       onClick={onClick}
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.95 }}

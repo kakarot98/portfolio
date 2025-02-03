@@ -75,7 +75,7 @@ const Experience = () => {
     setIsModalOpen(false);
   };
 
-  
+
   return (
     <section className="py-8 px-4">
       <h2 className="text-2xl font-bold mb-6 text-center">Professional Experience</h2>
@@ -85,19 +85,19 @@ const Experience = () => {
             key={index}
             experience={exp}
             onClick={() => handleCardClick(exp)}
-            isModalOpen = {isModalOpen}
+            isModalOpen={isModalOpen}
           />
         ))}
       </div>
 
-<AnimatePresence>
-      {isModalOpen && (
-        <ExperienceModal
-        isOpen={isModalOpen}
-        onClose={handleCloseModal}
-        experience={selectedExperience}
-      />
-      )}
+      <AnimatePresence>
+        {isModalOpen && (
+          <ExperienceModal
+            isOpen={isModalOpen}
+            onClose={handleCloseModal}
+            experience={selectedExperience}
+          />
+        )}
       </AnimatePresence>
     </section>
   );
