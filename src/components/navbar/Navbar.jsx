@@ -28,7 +28,7 @@ const Navbar = () => {
 
   const navLinkClass = ({ isActive }) =>
     isActive
-      ? 'text-blue-500 underline'
+      ? 'text-blue-500'
       : 'hover:text-blue-500 transition-colors duration-200';
 
   const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
@@ -48,14 +48,14 @@ const Navbar = () => {
   return (
     <div className='mb-10'>
       <motion.header
-        className="fixed top-0 left-0 right-0 bg-navBg shadow-md p-2 z-50"
+        className="fixed top-0 left-0 right-0 bg-navBg shadow-md p-2 py-3 md:py-5 z-50"
         animate={{ y: showNavbar ? 0 : -80 }}
         transition={{ duration: 0.3 }}
       >
         <div className="flex items-center justify-between px-6">
 
           <Link to="" className="flex-1 flex">
-            <h1 className="text-3xl font-bold text-text">Profile</h1>
+            <h1 className="text-2xl font-bold text-text">Profile</h1>
           </Link>
 
           <button
@@ -73,6 +73,7 @@ const Navbar = () => {
             <NavLink to="experience" className={navLinkClass}>Experience</NavLink>
             <NavLink to="project" className={navLinkClass}>Projects</NavLink>
             <NavLink to="skills" className={navLinkClass}>Skills</NavLink>
+            <NavLink to="funzone" className={navLinkClass}>Fun Zone</NavLink>
 
           </nav>
         </div>
@@ -119,6 +120,11 @@ const Navbar = () => {
                 <li>
                   <NavLink to="skills" className={navLinkClass} onClick={handleNavClick}>
                     Skills
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink to="funzone" className={navLinkClass} onClick={handleNavClick}>
+                    Fun Zone
                   </NavLink>
                 </li>
 
