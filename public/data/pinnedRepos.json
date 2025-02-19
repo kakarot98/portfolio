@@ -1,19 +1,19 @@
 [
   {
-    "repo": "exercise-tracker",
-    "description": "This is an exercise tracker app, similar  to to-do lists. My first try at MERN stack",
-    "stars": 2,
+    "repo": "portfolio",
+    "description": "A modern, dark-themed portfolio web app built with Vite and React that showcases my professional experience, education, projects, and skills. The site features a responsive, material-inspired design with smooth animations, dynamic routing, and real-time GitHub data integration for pinned projects, all optimized for both desktop and mobile viewing.",
+    "stars": 0,
     "forks": 0,
-    "link": "https://github.com/kakarot98/exercise-tracker",
+    "link": "https://github.com/kakarot98/portfolio",
     "language": "JavaScript",
     "languageColor": "#f1e05a"
   },
   {
-    "repo": "portfolio",
-    "description": null,
-    "stars": 0,
+    "repo": "exercise-tracker",
+    "description": "A full-stack MERN (MongoDB, Express, React, Node.js) application with CRUD features for tracking user exercise routines, allowing users to log exercises, view history, and manage their accounts. Backend is built using Node and Express server, front-end is built using React library",
+    "stars": 2,
     "forks": 0,
-    "link": "https://github.com/kakarot98/portfolio",
+    "link": "https://github.com/kakarot98/exercise-tracker",
     "language": "JavaScript",
     "languageColor": "#f1e05a"
   },

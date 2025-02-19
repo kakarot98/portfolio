@@ -9,15 +9,9 @@ const App = () => {
     <>
       <Navbar />
       <div className="main-content flex flex-col md:flex-row">
-
-        {/* Static Content: Profile Picture and Name */}
-
         <StaticContent />
-
-        {/* Dynamic Content: Outlet for Routing */}
-
         <div className="dynamic-content w-full md:flex-grow p-6 bg-primary">
-        <motion.div
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}

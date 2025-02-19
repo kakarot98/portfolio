@@ -19,7 +19,7 @@ const About = () => {
           ease: "linear"
         }}
       >
-        Hey there, I’m Hrushikesh! I’m a Software Engineer who loves turning ideas into pixel‑perfect websites and crafting engaging games. When I’m not coding, you can catch me jamming on my guitar or diving into my favorite games. Let’s team up and build something awesome!
+        Hey there, I’m Hrushikesh! I’m a Software Engineer who loves turning ideas into pixel‑perfect websites and crafting engaging games. When I’m not coding, you can catch me jamming to my Spotify playlists or diving into my favorite games and thrillers. Let’s team up and build something awesome!
       </motion.p>
     </motion.div>
   );

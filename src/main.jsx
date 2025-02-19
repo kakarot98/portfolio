@@ -8,6 +8,7 @@ import Education from './components/education/Education.jsx'
 import Experience from './components/experience/Experience.jsx'
 import Skills from './components/skills/Skills.jsx'
 import Project from './components/projects/Project.jsx'
+import FunZone from './components/funzone/FunZone.jsx';
 
 const router = createBrowserRouter([{
   path: '/portfolio',
@@ -32,7 +33,8 @@ const router = createBrowserRouter([{
     {
       path: 'project',
       element: <Project />,
-    }
+    },
+    { path: 'funzone', element: <FunZone /> }
   ]
 },
 ])
