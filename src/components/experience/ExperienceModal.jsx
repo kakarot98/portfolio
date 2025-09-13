@@ -1,5 +1,5 @@
 import React from 'react';
-import {motion} from 'framer-motion'
+import { motion } from 'framer-motion'
 
 const ExperienceModal = ({ isOpen, onClose, experience }) => {
   if (!isOpen || !experience) return null;
@@ -7,13 +7,13 @@ const ExperienceModal = ({ isOpen, onClose, experience }) => {
   const { title, company, position, dates, details } = experience;
 
   return (
-    <motion.div 
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50" 
+    <motion.div
+      className="fixed inset-0 z-50 flex items-center justify-center bg-gray-500 bg-opacity-50"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
     >
-      <motion.div 
+      <motion.div
         className="bg-secondary rounded-lg shadow-lg w-full max-w-2xl max-h-[70vh] text-left overflow-y-auto p-6 relative"
         initial={{ scale: 0.9, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}

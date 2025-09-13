@@ -8,7 +8,7 @@ const Navbar = () => {
   const [showNavbar, setShowNavbar] = useState(true);
   const lastScrollY = useRef(0);
 
- 
+
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
@@ -28,8 +28,8 @@ const Navbar = () => {
 
   const navLinkClass = ({ isActive }) =>
     isActive
-      ? 'text-blue-500 underline'
-      : 'hover:text-blue-500 transition-colors duration-200';
+      ? 'text-accent'
+      : 'text-text hover:text-accent transition-colors duration-200';
 
   const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
 
@@ -46,16 +46,16 @@ const Navbar = () => {
   };
 
   return (
-    <div className='mb-10'>
+    <div className='mb-12'>
       <motion.header
-        className="fixed top-0 left-0 right-0 bg-navBg shadow-md p-2 z-50"
+                className={`fixed top-0 md:top-2 left-0 right-0 bg-navBg z-50 p-4 md:py-5 md:mx-auto md:w-[99%] md:rounded-md ${isSidebarOpen ? '' : 'shadow-md'}`}
         animate={{ y: showNavbar ? 0 : -80 }}
         transition={{ duration: 0.3 }}
       >
         <div className="flex items-center justify-between px-6">
-          
+
           <Link to="" className="flex-1 flex">
-            <h1 className="text-3xl font-bold text-text">Profile</h1>
+            <h1 className="text-2xl font-bold text-text">Profile</h1>
           </Link>
 
           <button
@@ -67,13 +67,14 @@ const Navbar = () => {
               <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
             </svg>
           </button>
-      
+
           <nav className="hidden md:flex space-x-4 font-medium">
             <NavLink to="education" className={navLinkClass}>Education</NavLink>
             <NavLink to="experience" className={navLinkClass}>Experience</NavLink>
             <NavLink to="project" className={navLinkClass}>Projects</NavLink>
             <NavLink to="skills" className={navLinkClass}>Skills</NavLink>
-            <NavLink to="contact" className={navLinkClass}>Contact</NavLink>
+            <NavLink to="funzone" className={navLinkClass}>Fun Zone</NavLink>
+
           </nav>
         </div>
       </motion.header>
@@ -82,7 +83,7 @@ const Navbar = () => {
       <AnimatePresence>
         {isSidebarOpen && (
           <motion.div
-            className="fixed inset-0 z-40 bg-black bg-opacity-50"
+            className="fixed inset-0 z-40 bg-gray-500 bg-opacity-50"
             onClick={() => setIsSidebarOpen(false)}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -90,7 +91,7 @@ const Navbar = () => {
           >
 
             <motion.nav
-              className="fixed top-0 left-0 z-50 w-2/3 max-w-xs h-full bg-navBg p-4 pt-16 shadow-lg"
+              className="fixed top-0 left-0 z-50 w-2/3 max-w-xs h-full bg-navBg p-4 pt-16"
               initial={{ x: '-100%' }}
               animate={{ x: '0%' }}
               exit={{ x: '-100%' }}
@@ -122,10 +123,11 @@ const Navbar = () => {
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink to="contact" className={navLinkClass} onClick={handleNavClick}>
-                    Contact
+                  <NavLink to="funzone" className={navLinkClass} onClick={handleNavClick}>
+                    Fun Zone
                   </NavLink>
                 </li>
+
               </ul>
             </motion.nav>
           </motion.div>

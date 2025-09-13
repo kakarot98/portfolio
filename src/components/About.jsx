@@ -10,16 +10,9 @@ const About = () => {
       transition={{ duration: 0.3 }}
     >
       <motion.p
-        className="text-center text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-pink-500 to-red-500"
-        style={{ backgroundSize: '200% auto' }}
-        animate={{ backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }}
-        transition={{
-          duration: 5,
-          repeat: Infinity,
-          ease: "linear"
-        }}
+        className="text-center text-2xl font-bold text-text"
       >
-        Hey there, I’m Hrushikesh! I’m a Software Engineer who loves turning ideas into pixel‑perfect websites and crafting engaging games. When I’m not coding, you can catch me jamming on my guitar or diving into my favorite games. Let’s team up and build something awesome!
+        Hey there, I’m Hrushikesh! I’m a Software Engineer who loves turning ideas into pixel‑perfect websites and crafting engaging games. When I’m not coding, you can catch me jamming to my Spotify playlists or diving into my favorite games and thrillers. Let’s team up and build something awesome!
       </motion.p>
     </motion.div>
   );

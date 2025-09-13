@@ -13,15 +13,15 @@ const ProjectCard = ({ project }) => {
 
   function getContrastingColor(hex) {
     if (!hex) return '#fff';
-    
+
     hex = hex.replace('#', '');
-    
+
     const r = parseInt(hex.substr(0, 2), 16);
     const g = parseInt(hex.substr(2, 2), 16);
     const b = parseInt(hex.substr(4, 2), 16);
-    
+
     const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
-    
+
     return luminance > 0.5 ? '#000' : '#fff';
   }
 
@@ -32,14 +32,14 @@ const ProjectCard = ({ project }) => {
       whileTap={{ scale: 0.95 }}
     >
       <div>
-        <h3 className="text-xl font-semibold mb-2">{repo}</h3>
-        <p className="text-gray-300 mb-4">{description || "No description available."}</p>
+        <h3 className="text-xl font-semibold mb-2 text-text">{repo}</h3>
+        <p className="text-text mb-4 line-clamp-3">{description || "No description available."}</p>
       </div>
       <div>
         {language && (
           <span
             className="inline-block px-2 py-1 rounded-full text-xs font-bold mb-2"
-            style={{ 
+            style={{
               backgroundColor: languageColor || "#ccc",
               color: getContrastingColor(languageColor)
             }}

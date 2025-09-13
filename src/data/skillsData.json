@@ -1,0 +1,10 @@
+{
+  "languagesAndFrameworks": {
+    "title": "Languages & Frameworks",
+    "skills": "py,js,html,css,cs,react,nodejs,nextjs,express"
+  },
+  "toolsAndTechnologies": {
+    "title": "Tools & Technologies",
+    "skills": "redux,unity,git,bitbucket,docker,flask,heroku,postman,blender,vscode,mysql,mongodb"
+  }
+}
