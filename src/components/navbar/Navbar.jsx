@@ -46,9 +46,9 @@ const Navbar = () => {
   };
 
   return (
-    <div className='mb-10'>
+    <div className='mb-12'>
       <motion.header
-        className="fixed top-0 left-0 right-0 bg-navBg shadow-md p-2 py-3 md:py-5 z-50"
+                className={`fixed top-0 md:top-2 left-0 right-0 bg-navBg z-50 p-4 md:py-5 md:mx-auto md:w-[99%] md:rounded-md ${isSidebarOpen ? '' : 'shadow-md'}`}
         animate={{ y: showNavbar ? 0 : -80 }}
         transition={{ duration: 0.3 }}
       >
@@ -91,7 +91,7 @@ const Navbar = () => {
           >
 
             <motion.nav
-              className="fixed top-0 left-0 z-50 w-2/3 max-w-xs h-full bg-navBg p-4 pt-16 shadow-lg"
+              className="fixed top-0 left-0 z-50 w-2/3 max-w-xs h-full bg-navBg p-4 pt-16"
               initial={{ x: '-100%' }}
               animate={{ x: '0%' }}
               exit={{ x: '-100%' }}
