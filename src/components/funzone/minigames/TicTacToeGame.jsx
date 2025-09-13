@@ -79,12 +79,12 @@ const TicTacToeGame = () => {
     setMessage("Your turn! (You are X)");
   };
 
-  const cellClasses = "w-20 h-20 border border-gray-500 flex items-center justify-center text-3xl font-bold bg-secondary text-text";
+  const cellClasses = "w-20 h-20 border border-gray-300 flex items-center justify-center text-3xl font-bold bg-secondary text-text";
 
   return (
     <div className="flex flex-col items-center p-4">
-      <h3 className="text-2xl font-bold mb-4">Tic Tac Toe</h3>
-      <p className="mb-4 text-lg">{message}</p>
+      <h3 className="text-2xl font-bold mb-4 text-text">Tic Tac Toe</h3>
+      <p className="mb-4 text-lg text-text">{message}</p>
       <div className="grid grid-cols-3 gap-2 max-w-xs w-full">
         {board.map((cell, idx) => (
           <button 
@@ -111,7 +111,7 @@ const TicTacToeGame = () => {
             </p>
             <button 
               onClick={restartGame}
-              className="px-4 py-2 bg-accent text-white rounded hover:bg-accent-dark transition-colors"
+              className="px-4 py-2 bg-accent text-text rounded hover:bg-accent-dark transition-colors"
             >
               Restart
             </button>

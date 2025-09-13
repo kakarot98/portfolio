@@ -6,7 +6,7 @@ const Skills = () => {
   return (
     <section className="py-8 px-4">
      
-      <h2 className="text-2xl font-bold mb-6 text-center flex justify-center items-center">
+      <h2 className="text-2xl font-bold mb-6 text-center flex justify-center items-center text-text">
         🛠 Tech Stack
       </h2>
 
@@ -14,7 +14,7 @@ const Skills = () => {
       <div className="max-w-6xl mx-auto space-y-8">
         {/* Languages & Frameworks */}
         <div>
-          <h3 className="text-xl font-semibold mb-4">Languages & Frameworks</h3>
+          <h3 className="text-xl font-semibold mb-4 text-text">Languages & Frameworks</h3>
           <img
             src="https://skillicons.dev/icons?i=py,js,html,css,cs,react,nodejs,nextjs,express"
             alt="Languages & Frameworks"
@@ -34,7 +34,7 @@ const Skills = () => {
 
        
         <div>
-          <h3 className="text-xl font-semibold mb-4">Tools & Technologies</h3>
+          <h3 className="text-xl font-semibold mb-4 text-text">Tools & Technologies</h3>
           <img
             src="https://skillicons.dev/icons?i=redux,unity,git,bitbucket,docker,flask,heroku,postman,blender,vscode,mysql,mongodb"
             alt="Tools & Technologies"

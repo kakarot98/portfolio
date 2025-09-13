@@ -29,7 +29,7 @@ const FunZone = () => {
       
   return (
     <div className='py-8 px-4 bg-primary text-text min-h-screen'>
-        <h2 className="text-3xl font-bold text-center mb-8">Fun Zone</h2>
+        <h2 className="text-3xl font-bold text-center mb-8 text-text">Fun Zone</h2>
         <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-4">
         {funCards.map(card => (
           <motion.div
@@ -38,8 +38,8 @@ const FunZone = () => {
             whileHover={{ scale: 1.03 }}
             onClick={() => openModal(card)}
           >
-            <h3 className="text-xl font-bold mb-2">{card.title}</h3>
-            <p className="text-sm">{card.description}</p>
+            <h3 className="text-xl font-bold mb-2 text-text">{card.title}</h3>
+            <p className="text-sm text-text">{card.description}</p>
           </motion.div>
         ))}
 
@@ -47,7 +47,7 @@ const FunZone = () => {
 <AnimatePresence>
         {activeCard && (
           <motion.div
-            className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 p-4"
+            className="fixed inset-0 z-50 flex items-center justify-center bg-gray-500 bg-opacity-50 p-4"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -67,7 +67,7 @@ const FunZone = () => {
               }}
             >
               {/* Instead of a close button, the modal will close when clicking outside */}
-              <Suspense fallback={<div className="p-4 text-center">Loading game...</div>}>
+              <Suspense fallback={<div className="p-4 text-center text-text">Loading game...</div>}>
                 <TicTacToeGame />
               </Suspense>
             </motion.div>

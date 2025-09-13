@@ -28,8 +28,8 @@ const Navbar = () => {
 
   const navLinkClass = ({ isActive }) =>
     isActive
-      ? 'text-blue-500'
-      : 'hover:text-blue-500 transition-colors duration-200';
+      ? 'text-accent'
+      : 'text-text hover:text-accent transition-colors duration-200';
 
   const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
 
@@ -83,7 +83,7 @@ const Navbar = () => {
       <AnimatePresence>
         {isSidebarOpen && (
           <motion.div
-            className="fixed inset-0 z-40 bg-black bg-opacity-50"
+            className="fixed inset-0 z-40 bg-gray-500 bg-opacity-50"
             onClick={() => setIsSidebarOpen(false)}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}

@@ -32,8 +32,8 @@ const ProjectCard = ({ project }) => {
       whileTap={{ scale: 0.95 }}
     >
       <div>
-        <h3 className="text-xl font-semibold mb-2">{repo}</h3>
-        <p className="text-gray-300 mb-4 line-clamp-3">{description || "No description available."}</p>
+        <h3 className="text-xl font-semibold mb-2 text-text">{repo}</h3>
+        <p className="text-text mb-4 line-clamp-3">{description || "No description available."}</p>
       </div>
       <div>
         {language && (

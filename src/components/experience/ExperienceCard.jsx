@@ -17,17 +17,15 @@ function ExperienceCard({ experience, onClick, isModalOpen }) {
     >
       <h3 className="text-xl font-semibold mb-1 text-text">{title}</h3>
       <p className="text-md font-medium text-text">{company}</p>
-      <p className="text-sm text-gray-400">{position}</p>
-      <p className="text-sm text-gray-400">{dates}</p>
-      {!isModalOpen && (
-        <motion.p
-          className="text-sm text-accent italic mt-2"
-          animate={{ scale: [1, 1.05, 1] }}
-          transition={{ duration: 1.5, repeat: Infinity }}
-        >
-          Click to view more details
-        </motion.p>
-      )}
+      <p className="text-sm text-text">{position}</p>
+      <p className="text-sm text-text">{dates}</p>
+      <motion.p
+        className="text-sm text-accent italic mt-2"
+        animate={{ scale: [1, 1.05, 1] }}
+        transition={{ duration: 1.5, repeat: Infinity }}
+      >
+        Click to view more details
+      </motion.p>
     </motion.div>
   )
 }

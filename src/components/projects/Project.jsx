@@ -48,8 +48,8 @@ const Project = () => {
   if (loading) {
     return (
       <section className="py-8 px-4 ">
-        <h2 className="text-2xl font-bold mb-6 text-center">Projects</h2>
-        <p className="text-center">Loading projects...</p>
+        <h2 className="text-2xl font-bold mb-6 text-center text-text">Projects</h2>
+        <p className="text-center text-text">Loading projects...</p>
       </section>
     );
   }
@@ -57,7 +57,7 @@ const Project = () => {
   if (error) {
     return (
       <section className="py-8 px-4 ">
-        <h2 className="text-2xl font-bold mb-6 text-center">Projects</h2>
+        <h2 className="text-2xl font-bold mb-6 text-center text-text">Projects</h2>
         <p className="text-center text-red-500">
           Failed to load projects. Please try again later.
         </p>

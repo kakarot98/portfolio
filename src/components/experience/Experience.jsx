@@ -78,7 +78,7 @@ const Experience = () => {
 
   return (
     <section className="py-8 px-4">
-      <h2 className="text-2xl font-bold mb-6 text-center">Professional Experience</h2>
+      <h2 className="text-2xl font-bold mb-6 text-center text-text">Professional Experience</h2>
       <div className="flex flex-wrap gap-4 justify-center">
         {experienceData.map((exp, index) => (
           <ExperienceCard
