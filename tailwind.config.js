@@ -8,16 +8,24 @@ export default {
     
     extend: {
       colors: {
-        primary: '#F5F5DC',      
+        primary: '#F5F5F5',      
         secondary: '#FFFFFF',    
-        accent: '#ADD8E6',        
-        text: '#333333',          
-        navBg: '#E0EBF0',         
+        accent: '#A9A9A9',        
+        text: '#000000',          
+        navBg: '#F5F5F5',         
         cardBg: '#FFFFFF',
       },
       fontFamily: {
         sans: ['Inter', 'sans-serif'],
       },
+      width: {
+        '25': '25%',
+        '75': '75%',
+      },
+      height: {
+        '20': '20%',
+        '80': '80%',
+      }
     },
   },
   plugins: [
