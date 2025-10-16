@@ -1,5 +1,5 @@
 import React from 'react'
-import profile from '../assets/profile_glasses.jpg'
+import profile from '../assets/defaultProfile.jpg'
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 
 const StaticContent = () => {

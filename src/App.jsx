@@ -23,9 +23,9 @@ const App = () => {
   const navLinkClass = (link) => {
     let baseClasses = 'px-4 py-2 transition-colors duration-200 w-full h-full text-lg font-medium';
     if (activeLink === link) {
-      return `${baseClasses} bg-gray-200 border-b-2 border-blue-500 text-blue-500`;
+      return `${baseClasses} bg-gray-200 text-blue-500`;
     }
-    return `${baseClasses} text-text hover:bg-gray-100 border-r border-gray-300`;
+    return `${baseClasses} text-text hover:bg-gray-100`;
   };
 
   const renderComponent = () => {
@@ -47,19 +47,30 @@ const App = () => {
     }
   };
 
+  const [isLeftPaneVisible, setIsLeftPaneVisible] = useState(true);
+
+  const toggleLeftPane = () => {
+    setIsLeftPaneVisible(!isLeftPaneVisible);
+  };
+
   return (
-    <div className="h-screen py-12 px-16">
-        <div className="h-full grid grid-cols-[25%_75%] grid-rows-[auto_1fr]">
+    <div className="min-h-screen py-12 px-16 app-container">
+        <div className="h-full grid md:grid-cols-[25%_75%] grid-rows-[auto_1fr]">
             <div className="border-r border-b border-gray-300 h-12">
                 <ProfileButton setActiveComponent={setActiveComponent} handleNavClick={handleNavClick} />
             </div>
-            <div className="border-b border-gray-300 h-12">
-                <NavButtons activeLink={activeLink} handleNavClick={handleNavClick} navLinkClass={navLinkClass} />
+            <div className="border-b border-gray-300 h-12 top-nav">
+                <button className="hamburger-menu md:hidden" onClick={toggleLeftPane}>
+                  &#9776;
+                </button>
+                <div className="flex w-full h-full">
+                    <NavButtons activeLink={activeLink} handleNavClick={handleNavClick} navLinkClass={navLinkClass} />
+                </div>
             </div>
-            <div className="border-r border-gray-300">
+            <div className={`border-r border-gray-300 left-pane ${isLeftPaneVisible ? '' : 'hidden'} md:block`}>
                 <StaticContent />
             </div>
-            <div className="p-6 bg-primary overflow-y-auto">
+            <div className="p-6 bg-primary overflow-y-auto right-pane">
                 <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
