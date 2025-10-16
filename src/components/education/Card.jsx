@@ -3,7 +3,7 @@ import React from 'react'
 
 const baseCardClass = "shadow-md rounded-lg p-6  max-w-md mx-auto transition-transform duration-300";
 const hoverClass = "hover:scale-105 hover:shadow-xl";
-const dimensionClass = "w-full h-80"; // Customize width and height as needed
+const dimensionClass = "w-full"; // Customize width and height as needed
 
 function Card({ institution, degree, duration, coursework }) {
   return (
