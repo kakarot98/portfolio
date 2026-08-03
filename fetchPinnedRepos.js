@@ -67,8 +67,11 @@ async function fetchPinnedRepos() {
       languageColor: repo.primaryLanguage ? repo.primaryLanguage.color : null,
     }));
 
-    // Save the fetched data to a JSON file in the src/data folder
-    fs.writeFileSync('public/data/pinnedRepos.json', JSON.stringify(pinnedRepos, null, 2));
+    // src/data is what the app imports at build time; public/data is kept for
+    // anything still fetching the file at runtime.
+    const json = JSON.stringify(pinnedRepos, null, 2);
+    fs.writeFileSync('src/data/pinnedRepos.json', json);
+    fs.writeFileSync('public/data/pinnedRepos.json', json);
     console.log('Pinned repositories data fetched and saved successfully.');
   } catch (error) {
     console.error('Error fetching pinned repos:', error);

@@ -1,8 +1,11 @@
 {
   "name": "Hrushikesh Mohanty",
-  "title": "Software Engineer | Front-end Designer & Developer | Writer | Doodler",
+  "title": "Software Engineer",
+  "roles": ["Front-end Designer & Developer", "Writer", "Doodler"],
+  "blurb": "I build full-stack products end to end — most recently HIPAA-compliant health platforms and LLM tooling in Next.js. When I'm not coding, you can catch me jamming to my Spotify playlists or diving into my favorite games and thrillers.",
   "social": {
     "github": "https://github.com/kakarot98",
-    "linkedin": "https://www.linkedin.com/in/hrushikeshmohanty/"
+    "linkedin": "https://www.linkedin.com/in/hrushikeshmohanty/",
+    "email": "hrushikeshmohanty22@gmail.com"
   }
 }

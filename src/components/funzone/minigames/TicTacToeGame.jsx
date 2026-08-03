@@ -1,123 +1,118 @@
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { useCallback, useEffect, useState } from 'react';
 
-const winningCombos = [
-  [0, 1, 2],
-  [3, 4, 5],
-  [6, 7, 8],
-  [0, 3, 6],
-  [1, 4, 7],
-  [2, 5, 8],
-  [0, 4, 8],
-  [2, 4, 6],
+const WINNING_COMBOS = [
+  [0, 1, 2], [3, 4, 5], [6, 7, 8],
+  [0, 3, 6], [1, 4, 7], [2, 5, 8],
+  [0, 4, 8], [2, 4, 6],
 ];
+
+const checkWinner = (board) => {
+  for (const [a, b, c] of WINNING_COMBOS) {
+    if (board[a] && board[a] === board[b] && board[a] === board[c]) {
+      return { player: board[a], line: [a, b, c] };
+    }
+  }
+  return null;
+};
+
+/** Win if possible, else block, else take centre/corner. Beatable, but it tries. */
+const pickAiMove = (board) => {
+  const empty = board.reduce((acc, cell, i) => (cell === null ? [...acc, i] : acc), []);
+
+  for (const player of ['O', 'X']) {
+    for (const i of empty) {
+      const next = [...board];
+      next[i] = player;
+      if (checkWinner(next)) return i;
+    }
+  }
+
+  return [4, 0, 2, 6, 8, 1, 3, 5, 7].find((i) => empty.includes(i)) ?? empty[0];
+};
 
 const TicTacToeGame = () => {
   const [board, setBoard] = useState(Array(9).fill(null));
-  const [turn, setTurn] = useState("X"); // User is "X", AI is "O"
-  const [isGameOver, setIsGameOver] = useState(false);
-  const [winner, setWinner] = useState(null);
-  const [message, setMessage] = useState("Your turn! (You are X)");
+  const [turn, setTurn] = useState('X');
 
+  const result = checkWinner(board);
+  const isDraw = !result && board.every(Boolean);
+  const isGameOver = Boolean(result) || isDraw;
+
+  const message = result
+    ? result.player === 'X'
+      ? 'You win!'
+      : 'The AI takes this one.'
+    : isDraw
+      ? "It's a draw."
+      : turn === 'X'
+        ? 'Your turn — you are X.'
+        : 'AI is thinking…';
 
   useEffect(() => {
-    const checkWinner = (board) => {
-      for (let combo of winningCombos) {
-        const [a, b, c] = combo;
-        if (board[a] && board[a] === board[b] && board[a] === board[c]) {
-          return board[a];
-        }
-      }
-      return null;
-    };
+    if (turn !== 'O' || isGameOver) return undefined;
 
-    const currentWinner = checkWinner(board);
-    if (currentWinner) {
-      setIsGameOver(true);
-      setWinner(currentWinner);
-      setMessage(currentWinner === "X" ? "Congratulations! You win!" : "AI wins. Better luck next time!");
-    } else if (board.every(cell => cell !== null)) {
-      setIsGameOver(true);
-      setWinner("draw");
-      setMessage("It's a draw!");
-    } else if (turn === "O" && !isGameOver) {
+    const timer = setTimeout(() => {
+      setBoard((current) => {
+        if (checkWinner(current) || current.every(Boolean)) return current;
+        const next = [...current];
+        next[pickAiMove(current)] = 'O';
+        return next;
+      });
+      setTurn('X');
+    }, 400);
 
-      const timer = setTimeout(() => {
-        aiMove();
-      }, 500);
-      return () => clearTimeout(timer);
-    }
-  }, [board, turn, isGameOver]);
+    return () => clearTimeout(timer);
+  }, [turn, isGameOver]);
 
-  const handleCellClick = (index) => {
-    if (board[index] || isGameOver || turn !== "X") return; 
-    const newBoard = [...board];
-    newBoard[index] = "X";
-    setBoard(newBoard);
-    setTurn("O");
-    setMessage("AI's turn...");
-  };
+  const handleCellClick = useCallback(
+    (index) => {
+      if (board[index] || isGameOver || turn !== 'X') return;
+      setBoard((current) => {
+        const next = [...current];
+        next[index] = 'X';
+        return next;
+      });
+      setTurn('O');
+    },
+    [board, isGameOver, turn]
+  );
 
-  const aiMove = () => {
-    const emptyIndices = board
-      .map((cell, idx) => (cell === null ? idx : null))
-      .filter(val => val !== null);
-    if (emptyIndices.length === 0) return;
-    const randomIndex = emptyIndices[Math.floor(Math.random() * emptyIndices.length)];
-    const newBoard = [...board];
-    newBoard[randomIndex] = "O";
-    setBoard(newBoard);
-    setTurn("X");
-    setMessage("Your turn!");
-  };
-
-  const restartGame = () => {
+  const restart = () => {
     setBoard(Array(9).fill(null));
-    setTurn("X");
-    setIsGameOver(false);
-    setWinner(null);
-    setMessage("Your turn! (You are X)");
+    setTurn('X');
   };
-
-  const cellClasses = "w-20 h-20 border border-gray-300 flex items-center justify-center text-3xl font-bold bg-secondary text-text";
 
   return (
-    <div className="flex flex-col items-center p-4">
-      <h3 className="text-2xl font-bold mb-4 text-text">Tic Tac Toe</h3>
-      <p className="mb-4 text-lg text-text">{message}</p>
-      <div className="grid grid-cols-3 gap-2 max-w-xs w-full">
-        {board.map((cell, idx) => (
-          <button 
-            key={idx}
-            className={cellClasses}
-            onClick={() => handleCellClick(idx)}
-            disabled={cell !== null || isGameOver}
+    <div className="flex flex-col items-center">
+      <h3 className="text-xl font-bold text-text">Tic Tac Toe</h3>
+      <p aria-live="polite" className="mt-2 text-sm text-muted">{message}</p>
+
+      <div className="mt-6 grid grid-cols-3 gap-2">
+        {board.map((cell, index) => (
+          <button
+            key={index}
+            type="button"
+            onClick={() => handleCellClick(index)}
+            disabled={Boolean(cell) || isGameOver || turn !== 'X'}
+            aria-label={`Square ${index + 1}${cell ? `, ${cell}` : ', empty'}`}
+            className={`flex h-20 w-20 items-center justify-center rounded-lg border text-3xl font-bold transition-colors disabled:cursor-default ${
+              result?.line.includes(index)
+                ? 'border-accentDeep bg-accent/40 text-accentDeep'
+                : 'border-line bg-primary/40 text-text hover:border-accent'
+            }`}
           >
             {cell}
           </button>
         ))}
       </div>
-      <AnimatePresence>
-        {isGameOver && (
-          <motion.div
-            className="mt-4 flex flex-col items-center"
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.8 }}
-            transition={{ duration: 0.5 }}
-          >
-            <p className="text-xl font-bold mb-2">
-              {winner === "draw" ? "It's a Draw!" : `Game Over: ${winner} wins!`}
-            </p>
-            <button 
-              onClick={restartGame}
-              className="px-4 py-2 bg-accent text-text rounded hover:bg-accent-dark transition-colors"
-            >
-              Restart
-            </button>
-          </motion.div>
-        )}
-      </AnimatePresence>
+
+      <button
+        type="button"
+        onClick={restart}
+        className="mt-6 rounded-full border border-line px-5 py-2 text-sm font-medium text-text transition-colors hover:border-accent hover:text-accentDeep"
+      >
+        {isGameOver ? 'Play again' : 'Reset'}
+      </button>
     </div>
   );
 };

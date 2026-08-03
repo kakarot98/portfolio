@@ -1,0 +1,70 @@
+[
+  {
+    "title": "Software Engineer",
+    "company": "InSite Health",
+    "dates": "Jan 2026 — Present",
+    "current": true,
+    "details": [
+      "Collaborated with a distributed engineering team across different time zones, contributing to sprint planning, code reviews, and feature scoping while ensuring all development adhered to HIPAA-compliant access control and data handling standards",
+      "Developed and shipped core features for Wellness Platform (Next.js, MongoDB, AWS), a HIPAA/FERPA-compliant application used by 50+ schools to deliver student mental health and therapy programs, reducing counselor administrative overhead by 30%",
+      "Designed and built an incident tracking module enabling school staff to log, categorize, and monitor out-of-norm student events in real time, improving response workflows and giving administrators centralized visibility across campuses",
+      "Leveraged AI dev tools (Claude Code, Cursor) with prompt design and PII-aware LLM practices in a HIPAA-compliant codebase"
+    ]
+  },
+  {
+    "title": "Product Engineer",
+    "company": "Intelligine.ai",
+    "dates": "Feb 2025 — Dec 2025",
+    "current": false,
+    "details": [
+      "Designed and owned products from conception to release, with Next.js for stream input support and full-stack development, and S3 storage for files and images, seamlessly integrating to the products suite, projecting revenue increase by $30K/yr",
+      "Enhanced Perceived Performance by 30% with Server-Side Rendering (SSR) and Static Site Generation in Next.js, ensuring faster Time to First Paint (TTFP) and better SEO ranking",
+      "Integrated LLM APIs using AI SDK by Vercel and Server Actions, enabling secure key management and real-time streaming responses",
+      "Built Arena, an LLM comparison surface aggregating 40+ models (OpenAI, Anthropic, Gemini) with side-by-side streaming"
+    ]
+  },
+  {
+    "title": "Front-End Engineer",
+    "company": "Prudential Financial",
+    "dates": "Sep 2023 — Dec 2024",
+    "current": false,
+    "details": [
+      "Engineered and optimized real-time stock-price pages, replaced polling with Server Sent Events (SSE) API calls, React Hooks (TypeScript), and Material UI, improving Portfolio Managers' efficiency by 40%",
+      "Optimized frontend performance with code-splitting (Lazy, Suspense), virtualized rendering (react-window), useMemo/useCallback, cutting load 30%, rendering 50%, Core Web Vitals (LCP, FCP, DCL) 26%",
+      "Constructed unit tests using Jest, React Testing Library, Vitest to check core web vitals, boosting test coverage by 52%",
+      "Configured CI/CD Pipeline utilizing GitHub Actions, slashing deployment time by 50%, ensuring automated testing and releases"
+    ]
+  },
+  {
+    "title": "Software Engineer - Frontend",
+    "company": "Iksula",
+    "dates": "Jun 2021 — Aug 2022",
+    "current": false,
+    "details": [
+      "Directed a team of 5 developers through the development lifecycle, delivered the project 6 days ahead, allowing extended testing",
+      "Shortened RESTful API Response-to-UI Latency by 45% by implementing Redux-Saga concurrency control and caching, enabling near-instant data updates in the UI",
+      "Translated UI/UX designs to responsive WCAG-compliant user interfaces with Tailwind and used WebSockets to reduced overhead polling during continuous API calls, with a 30% improvement in user engagement"
+    ]
+  },
+  {
+    "title": "Web Developer",
+    "company": "MarketingPlus",
+    "dates": "Oct 2019 — May 2021",
+    "current": false,
+    "details": [
+      "Architected pixel-perfect websites for businesses using HTML5, CSS3, JavaScript, and ReactJS, boosting client online engagement",
+      "Partnered on 8 projects using Git and BitBucket, handled tickets using JIRA, ensuring seamless communication",
+      "Coordinated cross-functional team on a library webapp implementing for a University, achieving 90% usage increase in 2 months"
+    ]
+  },
+  {
+    "title": "Co-Founder, Technical Lead",
+    "company": "Loonar Games",
+    "dates": "May 2020 — Oct 2020",
+    "current": false,
+    "details": [
+      "Co-founded a bootstrapped game development studio, defined Business Plans and Product Roadmap, leading the design and development of engaging mobile games using Unity3D engine, with over 50,000+ downloads",
+      "Conceptualized front-end architecture and led requirement gathering meetings with stakeholders, aligning project goals effectively and increasing the downloads by 1000+ in first week"
+    ]
+  }
+]

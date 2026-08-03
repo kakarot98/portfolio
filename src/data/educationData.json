@@ -1,0 +1,25 @@
+[
+  {
+    "institution": "New Jersey Institute of Technology",
+    "degree": "Master's in Science, Information Systems",
+    "duration": "Sep 2022 — May 2024",
+    "coursework": [
+      "Web Development",
+      "System Design & Analysis",
+      "Software Design and Production Methodology",
+      "Software Project Management"
+    ]
+  },
+  {
+    "institution": "University of Mumbai",
+    "degree": "Bachelor's in Engineering, Information Technology",
+    "duration": "Aug 2016 — Jun 2020",
+    "coursework": [
+      "Computer Science",
+      "Database Management",
+      "Object Oriented Programming",
+      "Web Systems",
+      "Mobile Development"
+    ]
+  }
+]

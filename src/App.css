@@ -1,46 +1,4 @@
 
 #root {
-  margin: 0 auto;
-  text-align: center;
-}
-
-body {
-  @apply bg-primary text-text
-}
-
-/* Mobile Responsiveness */
-@media (max-width: 768px) {
-  .app-container {
-    flex-direction: column;
-    padding: 0;
-  }
-
-  .left-pane {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 80%;
-    height: 100%;
-    background-color: white;
-    z-index: 1000;
-    transform: translateX(-100%);
-    transition: transform 0.3s ease-in-out;
-  }
-
-  .left-pane:not(.hidden) {
-    transform: translateX(0);
-  }
-
-  .right-pane {
-    width: 100%;
-  }
-
-  
-
-  .top-nav {
-    display: flex;
-    align-items: center;
-    border-bottom: 1px solid #ccc;
-    padding: 0.5rem 1rem;
-  }
+  min-height: 100vh;
 }

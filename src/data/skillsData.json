@@ -1,10 +1,18 @@
-{
-  "languagesAndFrameworks": {
-    "title": "Languages & Frameworks",
-    "skills": "py,js,html,css,cs,react,nodejs,nextjs,express"
+[
+  {
+    "title": "Languages",
+    "skills": ["JavaScript", "TypeScript", "Python", "C#", "HTML5", "CSS3", "SQL"]
   },
-  "toolsAndTechnologies": {
-    "title": "Tools & Technologies",
-    "skills": "redux,unity,git,bitbucket,docker,flask,heroku,postman,blender,vscode,mysql,mongodb"
+  {
+    "title": "Frameworks & Libraries",
+    "skills": ["React", "Next.js", "Node.js", "Express", "Redux", "Tailwind CSS", "Material UI", "Flask", "React Native"]
+  },
+  {
+    "title": "Tools & Platforms",
+    "skills": ["Git", "BitBucket", "Docker", "Jest", "Postman", "Vite", "Unity3D", "Blender", "Heroku", "Vercel", "JIRA", "VS Code"]
+  },
+  {
+    "title": "Databases",
+    "skills": ["MySQL", "MongoDB"]
   }
-}
+]

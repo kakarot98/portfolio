@@ -1,138 +1,150 @@
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { useMemo, useState } from 'react';
 
-// A sample list of target words (can be expanded)
-const WORD_LIST = ["REACT", "WORLD", "HAPPY", "SMART", "BRAVE", "LUCKY"];
+const WORD_LIST = [
+  'REACT', 'WORLD', 'HAPPY', 'SMART', 'BRAVE', 'LUCKY',
+  'PIXEL', 'QUERY', 'STACK', 'LOGIC', 'CRAFT', 'SHINE',
+];
 const MAX_ATTEMPTS = 6;
 const WORD_LENGTH = 5;
 
-// Helper: get a random word from the list as the target
-const getRandomTarget = () => WORD_LIST[Math.floor(Math.random() * WORD_LIST.length)];
+const randomWord = () => WORD_LIST[Math.floor(Math.random() * WORD_LIST.length)];
 
-// Helper: generate a random word from A-Z
-const randomWord = (length) => {
-  const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-  let word = "";
-  for (let i = 0; i < length; i++) {
-    word += letters[Math.floor(Math.random() * letters.length)];
+/**
+ * Standard Wordle scoring: exact matches first, then present-but-misplaced
+ * letters drawn from the remaining pool so duplicates score correctly.
+ */
+const scoreGuess = (guess, target) => {
+  const result = Array(WORD_LENGTH).fill('absent');
+  const pool = {};
+
+  for (let i = 0; i < WORD_LENGTH; i += 1) {
+    if (guess[i] === target[i]) result[i] = 'correct';
+    else pool[target[i]] = (pool[target[i]] || 0) + 1;
   }
-  return word;
+
+  for (let i = 0; i < WORD_LENGTH; i += 1) {
+    if (result[i] === 'correct') continue;
+    if (pool[guess[i]] > 0) {
+      result[i] = 'present';
+      pool[guess[i]] -= 1;
+    }
+  }
+
+  return result;
+};
+
+const TILE_STYLES = {
+  correct: 'border-accentDeep bg-accentDeep text-white',
+  present: 'border-accent bg-accent/50 text-text',
+  absent: 'border-line bg-line/60 text-muted',
+  empty: 'border-line bg-primary/30 text-text',
 };
 
 const WordleGame = () => {
-  // The word to guess
-  const [targetWord, setTargetWord] = useState(getRandomTarget());
-  // The board: an array of MAX_ATTEMPTS strings.
-  // Pre-fill the first row with a random word (sample)
-  const [guesses, setGuesses] = useState([randomWord(WORD_LENGTH), "", "", "", "", ""]);
-  // Track the index for the next guess (start at 1 since row 0 is pre-filled)
-  const [attemptIndex, setAttemptIndex] = useState(1);
-  // The current guess input from the user
-  const [currentGuess, setCurrentGuess] = useState("");
-  // Game over state and message
-  const [gameOver, setGameOver] = useState(false);
-  const [message, setMessage] = useState("Your turn! (You are guessing)");
+  const [target, setTarget] = useState(randomWord);
+  const [guesses, setGuesses] = useState([]);
+  const [currentGuess, setCurrentGuess] = useState('');
+  const [error, setError] = useState('');
 
-  // Check for win/draw whenever a new guess is submitted
-  useEffect(() => {
-    if (attemptIndex > 0) {
-      const lastGuess = guesses[attemptIndex - 1];
-      if (lastGuess && lastGuess === targetWord) {
-        setGameOver(true);
-        setMessage("Congratulations! You guessed it!");
-      } else if (attemptIndex > MAX_ATTEMPTS) {
-        setGameOver(true);
-        setMessage(`Game Over! The word was ${targetWord}.`);
-      }
-    }
-  }, [guesses, attemptIndex, targetWord]);
+  const hasWon = guesses.at(-1) === target;
+  const isGameOver = hasWon || guesses.length >= MAX_ATTEMPTS;
 
-  const handleInputChange = (e) => {
-    setCurrentGuess(e.target.value.toUpperCase());
-  };
+  const scored = useMemo(
+    () => guesses.map((guess) => ({ guess, marks: scoreGuess(guess, target) })),
+    [guesses, target]
+  );
 
-  const submitGuess = () => {
+  const submitGuess = (event) => {
+    event.preventDefault();
+    if (isGameOver) return;
+
     if (currentGuess.length !== WORD_LENGTH) {
-      setMessage(`Guess must be ${WORD_LENGTH} letters.`);
+      setError(`Guess must be ${WORD_LENGTH} letters.`);
       return;
     }
-    const newGuesses = [...guesses];
-    newGuesses[attemptIndex] = currentGuess;
-    setGuesses(newGuesses);
-    setAttemptIndex(attemptIndex + 1);
-    setCurrentGuess("");
-    setMessage("Your turn!");
+
+    setGuesses((current) => [...current, currentGuess]);
+    setCurrentGuess('');
+    setError('');
   };
 
-  const restartGame = () => {
-    setTargetWord(getRandomTarget());
-    setGuesses([randomWord(WORD_LENGTH), "", "", "", "", ""]);
-    setAttemptIndex(1);
-    setCurrentGuess("");
-    setGameOver(false);
-    setMessage("Your turn! (You are guessing)");
+  const restart = () => {
+    setTarget(randomWord());
+    setGuesses([]);
+    setCurrentGuess('');
+    setError('');
   };
+
+  const rows = Array.from({ length: MAX_ATTEMPTS }, (_, rowIndex) => {
+    if (scored[rowIndex]) return scored[rowIndex];
+    if (rowIndex === guesses.length && !isGameOver) {
+      return { guess: currentGuess.padEnd(WORD_LENGTH), marks: Array(WORD_LENGTH).fill('empty') };
+    }
+    return { guess: ' '.repeat(WORD_LENGTH), marks: Array(WORD_LENGTH).fill('empty') };
+  });
 
   return (
-    <div className="w-full p-4">
-      <h2 className="text-2xl font-bold mb-4 text-center text-text">Wordle Challenge</h2>
-      <p className="mb-4 text-center text-sm text-gray-400">
-        Guess the {WORD_LENGTH}-letter word. You have {MAX_ATTEMPTS} attempts.
+    <div className="flex flex-col items-center">
+      <h3 className="text-xl font-bold text-text">Wordle</h3>
+      <p className="mt-2 text-sm text-muted">
+        Guess the {WORD_LENGTH}-letter word in {MAX_ATTEMPTS} tries.
       </p>
-      {/* Render the board as rows, one below the other */}
-      <div className="space-y-2 mb-4">
-        {guesses.map((guess, rowIndex) => (
-          <div key={rowIndex} className="grid grid-cols-5 gap-1 justify-center">
-            {Array.from({ length: WORD_LENGTH }).map((_, colIndex) => (
-              <input
+
+      <div className="mt-6 space-y-1.5">
+        {rows.map((row, rowIndex) => (
+          <div key={rowIndex} className="flex gap-1.5">
+            {Array.from({ length: WORD_LENGTH }, (_, colIndex) => (
+              <div
                 key={colIndex}
-                type="text"
-                value={guess[colIndex] || ""}
-                readOnly
-                className="w-12 h-12 border border-gray-600 text-center text-2xl font-bold bg-secondary text-text"
-              />
+                className={`flex h-12 w-12 items-center justify-center rounded-md border text-xl font-bold uppercase transition-colors ${
+                  TILE_STYLES[row.marks[colIndex]]
+                }`}
+              >
+                {row.guess[colIndex]?.trim() || ''}
+              </div>
             ))}
           </div>
         ))}
       </div>
-      {/* Input for current guess */}
-      {!gameOver && (
-        <div className="flex flex-col items-center mb-4">
+
+      {!isGameOver ? (
+        <form onSubmit={submitGuess} className="mt-6 flex flex-col items-center gap-3">
+          <label htmlFor="wordle-guess" className="sr-only">
+            Your guess
+          </label>
           <input
+            id="wordle-guess"
             type="text"
             value={currentGuess}
-            onChange={handleInputChange}
+            onChange={(event) => {
+              setCurrentGuess(event.target.value.toUpperCase().replace(/[^A-Z]/g, ''));
+              setError('');
+            }}
             maxLength={WORD_LENGTH}
-            className="w-48 p-2 text-center uppercase bg-secondary border border-gray-600 rounded mb-2 text-text"
+            autoComplete="off"
+            className="w-48 rounded-lg border border-line bg-primary/30 px-4 py-2 text-center text-lg font-semibold uppercase tracking-[0.3em] text-text"
           />
           <button
-            onClick={submitGuess}
-            className="px-4 py-2 bg-accent text-white rounded hover:bg-accent-dark transition-colors"
+            type="submit"
+            className="rounded-full bg-accentDeep px-5 py-2 text-sm font-medium text-white transition-opacity hover:opacity-90"
           >
-            Submit Guess
+            Submit guess
+          </button>
+          <p aria-live="polite" className="h-4 text-sm text-muted">{error}</p>
+        </form>
+      ) : (
+        <div className="mt-6 flex flex-col items-center gap-3">
+          <p aria-live="polite" className="text-base font-semibold text-text">
+            {hasWon ? 'Nailed it!' : `The word was ${target}.`}
+          </p>
+          <button
+            type="button"
+            onClick={restart}
+            className="rounded-full border border-line px-5 py-2 text-sm font-medium text-text transition-colors hover:border-accent hover:text-accentDeep"
+          >
+            Play again
           </button>
         </div>
-      )}
-      <AnimatePresence>
-        {gameOver && (
-          <motion.div
-            className="text-center text-xl font-bold text-accent mb-4"
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.8 }}
-            transition={{ duration: 0.5 }}
-          >
-            {message}
-          </motion.div>
-        )}
-      </AnimatePresence>
-      {gameOver && (
-        <button
-          onClick={restartGame}
-          className="px-4 py-2 bg-accent text-white rounded hover:bg-accent-dark transition-colors block mx-auto"
-        >
-          Restart Game
-        </button>
       )}
     </div>
   );
